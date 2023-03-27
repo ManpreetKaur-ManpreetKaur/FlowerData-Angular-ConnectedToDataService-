@@ -14,7 +14,7 @@ export class FlowerDataService {
   }
 
   private static imageFolderUri = 'http://localhost:8080/images/flowers/';
-  private jsonDataUri = 'http://localhost:8080/api/flowers/';
+  private jsonDataUri = 'http://localhost:8080/api/flowers';
 
   private static json2Flower(flowerJson: FlowerJson): Flower {
     const flower = new Flower();
@@ -47,7 +47,7 @@ export class FlowerDataService {
   public getFlower(id: String): Observable<Flower> {
     let subject: ReplaySubject<Flower> = new ReplaySubject<Flower>();
     this.httpClient
-      .get(this.jsonDataUri + id)
+      .get(this.jsonDataUri + '/' + id)
       .subscribe(
         (flowerJson: any) => {
           console.log(flowerJson);
