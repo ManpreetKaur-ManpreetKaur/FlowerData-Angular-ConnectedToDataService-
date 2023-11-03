@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, Observable, ReplaySubject} from "rxjs";
 import {Flower} from "./flower";
-import {CatalogJson, FlowerJson} from "./json-structure";
+import {FlowerJson} from "./json-structure";
 import {catalog} from "./catalog-data";
 
 @Injectable({
