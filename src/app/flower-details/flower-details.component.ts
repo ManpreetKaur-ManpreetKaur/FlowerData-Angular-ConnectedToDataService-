@@ -21,9 +21,7 @@ export class FlowerDetailsComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if(id != null) {
-        this.flowerDataService.getFlower(id).subscribe(flower => {
-          this.flower = flower;
-        });
+        this.flower = this.flowerDataService.getFlower(id)
       }
     });
   }

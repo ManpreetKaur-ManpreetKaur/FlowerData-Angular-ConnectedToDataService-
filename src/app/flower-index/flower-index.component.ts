@@ -13,11 +13,6 @@ export class FlowerIndexComponent implements OnInit {
     this.flowers = [];
   }
   ngOnInit(): void {
-    this.flowerDataService.getFlowerList().subscribe(
-      flowers => {
-        console.log(flowers);
-        this.flowers = flowers;
-      }
-    );
+    this.flowers = this.flowerDataService.getFlowerList();
   }
 }

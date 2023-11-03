@@ -9,6 +9,7 @@ export interface FlowerJson {
   price: number;
   description: string;
   picture: PictureJson;
+  wiki: string;
 }
 
 export interface CatalogJson {
