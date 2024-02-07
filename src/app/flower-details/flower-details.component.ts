@@ -10,13 +10,11 @@ import {FlowerDataService} from '../flower-data.service';
 })
 export class FlowerDetailsComponent {
 
-  flower?: Flower;
+  flower: Flower | undefined;
 
-  constructor(
-    private flowerDataService: FlowerDataService,
-    private activatedRoute: ActivatedRoute) {
+  constructor(flowerDataService: FlowerDataService, activatedRoute: ActivatedRoute) {
 
-    const id: string | null =  this.activatedRoute.snapshot.paramMap.get('id');
+    const id: string | null =  activatedRoute.snapshot.paramMap.get('id');
     if(id != null){
       this.flower = flowerDataService.getFlower(id);
     }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="flower">
+<ng-container *ngIf="flower !== undefined; else not_found">
   <p>
     <span class="flower_label">Flower:</span>
     <span class="flower_name">{{flower.label}}</span>
@@ -9,7 +9,13 @@
   <div class="text_box">
     {{flower.description}}
   </div>
-  <p>
-    <a routerLink="/">Flower Catalog</a>
-  </p>
 </ng-container>
+<ng-template #not_found>
+  <p class="message">
+    The data is not found.
+  </p>
+</ng-template>
+<p>
+  <a routerLink="/">Flower Catalog</a>
+</p>
+

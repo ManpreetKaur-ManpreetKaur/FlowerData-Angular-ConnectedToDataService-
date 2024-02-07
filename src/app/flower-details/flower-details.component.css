@@ -26,3 +26,9 @@ a{
   color: limegreen;
   font-weight: bolder;
 }
+
+p.message {
+  font-size: larger;
+  font-weight: bolder;
+  color: crimson;
+}

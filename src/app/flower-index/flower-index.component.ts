@@ -7,12 +7,11 @@ import {FlowerDataService} from "../flower-data.service";
   templateUrl: './flower-index.component.html',
   styleUrls: ['./flower-index.component.css']
 })
-export class FlowerIndexComponent implements OnInit {
-  public flowers: Flower[];
-  constructor(private flowerDataService: FlowerDataService) {
-    this.flowers = [];
-  }
-  ngOnInit(): void {
-    this.flowers = this.flowerDataService.getFlowerList();
+export class FlowerIndexComponent {
+
+  flowers: Flower[];
+
+  constructor(flowerDataService: FlowerDataService) {
+    this.flowers = flowerDataService.getFlowerList();
   }
 }

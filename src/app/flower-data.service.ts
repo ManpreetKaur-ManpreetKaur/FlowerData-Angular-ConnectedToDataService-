@@ -17,7 +17,7 @@ export class FlowerDataService {
   private static imageFolder = 'assets/images/flowers/';
 
   private static json2Flower(flowerJson: FlowerJson): Flower {
-    const flower = new Flower();
+    const flower: Flower = new Flower();
     flower.id = flowerJson.id;
     flower.label = flowerJson.label;
     flower.price = flowerJson.price;
@@ -31,8 +31,8 @@ export class FlowerDataService {
     return this.flowers;
   }
 
-  public getFlower(id: String): Flower {
-    return <Flower>this.flowers.find(flower => flower.id === id)
+  public getFlower(id: String): Flower | undefined {
+    return this.flowers.find(flower => flower.id === id)
   }
 
 }
