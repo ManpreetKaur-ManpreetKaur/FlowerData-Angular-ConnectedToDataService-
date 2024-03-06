@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Flower} from "./flower";
-import {CatalogJson, FlowerJson} from "./json-structure";
+import {DataJson, FlowerJson} from "./json-structure";
 import {HttpClient} from "@angular/common/http";
-import {map, Observable, of, switchMap} from "rxjs";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class FlowerDataService {
   constructor(private http: HttpClient) {
   }
 
-  private static imageFolder: string = 'assets/images/flowers/';
-  private static catalogUri: string = 'assets/data/catalog.json'
+  private static imageFolder: string = 'http://localhost:8080/images/flowers/';
+  private static dataUrl: string = 'http://localhost:8080/api/flowers';
 
   private static json2Flower(flowerJson: FlowerJson): Flower {
     const flower: Flower = new Flower();
@@ -27,16 +27,15 @@ export class FlowerDataService {
   }
 
   public getAllFlowers(): Observable<Flower[]> {
-    return this.http.get<CatalogJson>(FlowerDataService.catalogUri)
+    return this.http.get<DataJson>(FlowerDataService.dataUrl)
       .pipe(
-        map(catalog => catalog.flowers
+        map(data => data._embedded.flowers
           .map(flower => FlowerDataService.json2Flower(flower)))
       )
   }
 
   public getFlowerById(id: string): Observable<Flower | undefined>{
-    return this.getAllFlowers().pipe(
-      switchMap(flowers => of(flowers.find(flower => flower.id === id)))
-    )
+    return this.http.get<FlowerJson>(`${FlowerDataService.dataUrl}/${id}`)
+      .pipe(map(flower => FlowerDataService.json2Flower(flower)));
   }
 }
