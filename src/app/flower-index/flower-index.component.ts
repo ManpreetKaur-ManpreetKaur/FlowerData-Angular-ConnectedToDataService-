@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Flower} from "../flower";
 import {FlowerDataService} from "../flower-data.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-flower-index',
@@ -9,9 +10,9 @@ import {FlowerDataService} from "../flower-data.service";
 })
 export class FlowerIndexComponent {
 
-  flowers: Flower[];
+  flowers: Observable<Flower[]>;
 
   constructor(flowerDataService: FlowerDataService) {
-    this.flowers = flowerDataService.getFlowerList();
+    this.flowers = flowerDataService.getAllFlowers();
   }
 }

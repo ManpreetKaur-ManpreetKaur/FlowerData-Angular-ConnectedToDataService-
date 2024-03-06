@@ -16,7 +16,7 @@ export class FlowerDetailsComponent {
 
     const id: string | null =  activatedRoute.snapshot.paramMap.get('id');
     if(id != null){
-      this.flower = flowerDataService.getFlower(id);
+      flowerDataService.getFlowerById(id).subscribe(flower => this.flower = flower);
     }
   }
 }

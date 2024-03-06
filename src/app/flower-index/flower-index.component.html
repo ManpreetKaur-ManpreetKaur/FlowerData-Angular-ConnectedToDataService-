@@ -1,6 +1,6 @@
 <h2>Flower Catalog</h2>
 <table>
-  <tr *ngFor="let f of flowers">
+  <tr *ngFor="let f of (flowers | async)">
     <td>
       <a [routerLink]="['flowers',f.id]">
         <img class="thumb"
