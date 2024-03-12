@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Flower} from "./flower";
 import {DataJson, FlowerJson} from "./json-structure";
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {delay, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,7 @@ export class FlowerDataService {
 
   public getFlowerById(id: string): Observable<Flower | undefined>{
     return this.http.get<FlowerJson>(`${FlowerDataService.dataUrl}/${id}`)
-      .pipe(map(flower => FlowerDataService.json2Flower(flower)));
+      // contains the fake one-second delay
+      .pipe(delay(1000),map(flower => FlowerDataService.json2Flower(flower)));
   }
 }

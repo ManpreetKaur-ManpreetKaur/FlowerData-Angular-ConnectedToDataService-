@@ -1,4 +1,4 @@
-<ng-container *ngIf="flower !== undefined; else not_found">
+<ng-container *ngIf="flower !== undefined">
   <p>
     <span class="flower_label">Flower:</span>
     <span class="flower_name">{{flower.label}}</span>
@@ -10,11 +10,14 @@
     {{flower.description}}
   </div>
 </ng-container>
-<ng-template #not_found>
-  <p class="message">
-    The data is not found.
+<ng-container [ngSwitch]="loadingState">
+  <p class="message" *ngSwitchCase="LoadingState.LOADING">
+    Loading the Data (Fake Delay).
   </p>
-</ng-template>
+  <p class="message" *ngSwitchCase="LoadingState.ERROR">
+    The Data is Not Found.
+  </p>
+</ng-container>
 <p>
   <a routerLink="/">Flower Catalog</a>
 </p>
